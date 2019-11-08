@@ -101,9 +101,13 @@ namespace ScrabbleScoreAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Score>> PostScore(Score score)
         {
+
+            var ScoringValueSet = _setContext.ScoringValueSet.Find(score.ScoringValueSetId);
+            var theScore = ScrabbleScore.Score(score.Word, ScoringValueSet);
             if (score.ScrabbleScore == 0) {
-                var theScore = ScrabbleScore.Score(score.Word);
                 score = new Score{ ScrabbleScore = theScore, Word = score.Word, ScoringValueSetId = score.ScoringValueSetId };
+            } else if (score.ScrabbleScore != theScore) {
+                return BadRequest("Bad request: Score is incorrect! Please double check the score.");
             }
             _context.ScrabbleScores.Add(score);
             await _context.SaveChangesAsync();
