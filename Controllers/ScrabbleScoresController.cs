@@ -101,6 +101,10 @@ namespace ScrabbleScoreAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Score>> PostScore(Score score)
         {
+            if (score.ScrabbleScore == 0) {
+                var theScore = ScrabbleScore.Score(score.Word);
+                score = new Score{ ScrabbleScore = theScore, Word = score.Word, ScoringValueSetId = score.ScoringValueSetId };
+            }
             _context.ScrabbleScores.Add(score);
             await _context.SaveChangesAsync();
 
