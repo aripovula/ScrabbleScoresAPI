@@ -6,13 +6,45 @@ https://localhost:5101/api/ScrabbleScores        - get all, post, put, delete Sc
 
 https://localhost:5101/api/ScrabbleScores/{X}      - get Xth ScrabbleScore saved
 
-post body option:
+Post examples:
+
+1) if score is not given it is first calculated and then saved in DB:
 
 {
-  "ScrabbleScore": 12,
-  "Word": "ABC"
+    "word": "abc",
 }
 
+2) if score is given and it is correct (for given scoring value set) it is saved in DB
+
+( if  scoringValueSetId is not provided it is by default 0 - i.e. uses exercism.io scoring value set )
+
+{
+    "scrabbleScore": 14,
+    "word": "AnyWord"
+}
+
+OR it can use custom scoring value set:
+
+{
+    "scrabbleScore": 24,
+    "word": "AnyWord",
+    "scoringValueSetId": 1
+}
+
+3) if score is given and it is NOT correct (for given scoring value set) API returns Bad request message.
+
+{
+    "scrabbleScore": 10,
+    "word": "AnyWord"
+}
+
+OR it can use custom scoring value set:
+
+{
+    "scrabbleScore": 20,
+    "word": "AnyWord",
+    "scoringValueSetId": 1
+}
 
 # 2. Classic ScrabbleScore:
 
