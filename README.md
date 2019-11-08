@@ -11,7 +11,7 @@ Post examples:
 1) if score is not given it is first calculated and then saved in DB:
 
 {
-    "word": "abc",
+    "word": "abc"
 }
 
 2) if score is given and it is correct (for given scoring value set) it is saved in DB
@@ -28,7 +28,7 @@ OR it can use custom scoring value set:
 {
     "scrabbleScore": 24,
     "word": "AnyWord",
-    "scoringValueSetId": 1
+    "scoringValueSetId": 2
 }
 
 3) if score is given and it is NOT correct (for given scoring value set) API returns Bad request message.
@@ -43,7 +43,7 @@ OR it can use custom scoring value set:
 {
     "scrabbleScore": 20,
     "word": "AnyWord",
-    "scoringValueSetId": 1
+    "scoringValueSetId": 2
 }
 
 # 2. Classic ScrabbleScore:
