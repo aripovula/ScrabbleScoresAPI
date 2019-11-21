@@ -39,10 +39,14 @@ public static class ScrabbleScore
 
         string word = input.ToLower();
         int score = 0;
-
+        int ind = 0;
+        List<int> scores = new List<int>{1, 3, 8, 14, 20, 34, 50, 120};
         foreach (char letter in word)
         {
-            score += values[letter];
+            ind +=1;
+            // score += values[letter];
+            score += scores[ind];
+
         }
         return score;
     }
